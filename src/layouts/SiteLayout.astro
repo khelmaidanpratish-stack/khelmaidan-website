@@ -1,0 +1,41 @@
+---
+import "../styles/global.css";
+const { title = "KhelMaidan | Sports, in focus", description = "Football, cricket, volleyball and more." } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="KhelMaidan home">
+        <span class="brand-mark">K</span>
+        <span>KHEL<span class="brand-accent">MAIDAN</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="/football/">Football</a>
+        <a href="/cricket/">Cricket</a>
+        <a href="/volleyball/">Volleyball</a>
+        <a href="/extras/">Extras</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <a class="brand brand--footer" href="/">KHEL<span class="brand-accent">MAIDAN</span></a>
+      <p>Sports, in focus. Independent editorial project.</p>
+      <div class="footer-links">
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+        <a href="/privacy/">Privacy</a>
+      </div>
+      <small>© {new Date().getFullYear()} KhelMaidan. Sample site under development.</small>
+    </footer>
+  </body>
+</html>

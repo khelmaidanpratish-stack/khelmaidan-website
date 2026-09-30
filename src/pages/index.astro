@@ -1,0 +1,33 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import NewsCard from "../components/NewsCard.jsx";
+import { articles } from "../data/articles.js";
+const sorted = [...articles].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+const featured = sorted[0];
+---
+<SiteLayout title="KhelMaidan | Latest sports news" description="Latest football, cricket, volleyball and sports stories.">
+  <section class="hero wrap">
+    <div class="hero-copy">
+      <p class="eyebrow">The sports desk</p>
+      <h1>Stories from the <span>maidan.</span></h1>
+      <p class="hero-intro">Football first. Cricket, volleyball and the wider world of sport.</p>
+      <a class="button" href="/football/">Explore football <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="hero-panel">
+      <span class="hero-panel__label">Latest story · {featured.category}</span>
+      <h2><a href={`/article/${featured.slug}/`}>{featured.title}</a></h2>
+      <p>{featured.excerpt}</p>
+      <a class="read-more read-more--light" href={`/article/${featured.slug}/`}>Read the latest <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <div class="section-heading">
+      <div><p class="eyebrow">Fresh from the desk</p><h2>Latest news</h2></div>
+      <span class="muted">Newest stories first</span>
+    </div>
+    <div class="news-grid">
+      {sorted.map((article) => <NewsCard article={article} client:load />)}
+    </div>
+  </section>
+</SiteLayout>

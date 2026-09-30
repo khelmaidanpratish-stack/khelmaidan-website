@@ -1,0 +1,10 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import NewsCard from "../../components/NewsCard.jsx";
+import { articles } from "../../data/articles.js";
+const items = articles.filter((a) => a.category === "Cricket").sort((a,b) => new Date(b.publishedAt)-new Date(a.publishedAt));
+---
+<SiteLayout title="Cricket | KhelMaidan" description="Cricket news and coverage from KhelMaidan.">
+  <section class="category-hero wrap"><p class="eyebrow">KhelMaidan / Sport</p><h1>Cricket</h1><p>Match stories, tournament coverage and cricket updates.</p></section>
+  <section class="wrap section"><div class="news-grid">{items.map((article) => <NewsCard article={article} client:load />)}</div></section>
+</SiteLayout>
