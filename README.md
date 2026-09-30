@@ -1,33 +1,16 @@
-# KhelMaidan starter
+# KhelMaidan
 
-A starter website for KhelMaidan, built with Astro and React.
+KhelMaidan is a sports news website focused on football, cricket, volleyball, and other sports.
 
-## Requirements
-- Node.js 22.12.0 or newer (LTS recommended)
-- npm
+## Tech Stack
 
-## Run locally
-1. Extract this folder.
-2. Open the `khelmaidan-starter` folder in VS Code.
-3. Open Terminal → New Terminal.
-4. Run:
+- Astro
+- React
+- CSS
 
-   npm install
+## Run Locally
 
-5. Then run:
+Install dependencies:
 
-   npm run dev
-
-6. Open the local URL printed in the terminal (usually http://localhost:4321).
-
-## Build check
-Run `npm run build` to create the production build in `dist/`.
-
-## Where to edit
-- `src/data/articles.js`: sample editorial content (temporary sample stories).
-- `src/components/NewsCard.jsx`: reusable React news card.
-- `src/layouts/SiteLayout.astro`: shared navigation, footer, and page shell.
-- `src/styles/global.css`: global styling.
-- `src/pages/`: website routes.
-
-This is a starter scaffold. The sample stories are placeholders, not real news.
+```bash
+npm install
