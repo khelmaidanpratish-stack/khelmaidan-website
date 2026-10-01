@@ -1,0 +1,89 @@
+backend:
+  name: github
+  repo: khelmaidanpratish-stack/khelmaidan-website
+  branch: main
+
+media_folder: public/uploads
+public_folder: /uploads
+
+site_url: https://khelmaidan-website.khel-maidan-pratish.workers.dev
+display_url: https://khelmaidan-website.khel-maidan-pratish.workers.dev
+logo_url: /images/football-placeholder.svg
+
+collections:
+  - name: articles
+    label: Articles
+    label_singular: Article
+    folder: src/content/articles
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{category}} — {{publishedAt}}"
+    sortable_fields: [publishedAt, title, category]
+
+    view_filters:
+      - label: Football
+        field: category
+        pattern: Football
+
+      - label: Cricket
+        field: category
+        pattern: Cricket
+
+      - label: Volleyball
+        field: category
+        pattern: Volleyball
+
+      - label: Extras
+        field: category
+        pattern: Extras
+
+    fields:
+      - label: Title
+        name: title
+        widget: string
+
+      - label: Category
+        name: category
+        widget: select
+        options:
+          - Football
+          - Cricket
+          - Volleyball
+          - Extras
+
+      - label: Publication date
+        name: publishedAt
+        widget: string
+        hint: "Use YYYY-MM-DD, for example 2026-09-30."
+        pattern:
+          - '^\d{4}-\d{2}-\d{2}$'
+          - 'Use YYYY-MM-DD'
+
+      - label: Author
+        name: author
+        widget: string
+        default: KhelMaidan
+
+      - label: Excerpt
+        name: excerpt
+        widget: text
+        hint: "One or two sentences used on article cards and search previews."
+
+      - label: Featured story
+        name: featured
+        widget: boolean
+        default: false
+        required: false
+
+      - label: Article image
+        name: image
+        widget: image
+        required: false
+        hint: "Upload an image, or leave blank to use the category fallback image."
+
+      - label: Article body
+        name: body
+        widget: markdown
