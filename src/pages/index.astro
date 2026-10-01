@@ -1,8 +1,8 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import NewsCard from '../components/NewsCard.jsx';
-import { articles } from '../data/articles.js';
-const sorted=[...articles].sort((a,b)=>new Date(b.publishedAt)-new Date(a.publishedAt));
+import { getArticles, formatPublicationDate, getArticleImage, getFallbackImage } from '../lib/articles.js';
+const sorted = await getArticles();
 const featured=sorted[0]; const side=sorted.slice(1,4);
 const football=sorted.filter(a=>a.category==='Football').slice(0,3);
 const cricket=sorted.filter(a=>a.category==='Cricket').slice(0,3);
@@ -11,10 +11,10 @@ const volleyball=sorted.filter(a=>a.category==='Volleyball').slice(0,3);
 <SiteLayout title="KhelMaidan | Sports, in focus" description="Latest football, cricket, volleyball and sports stories from KhelMaidan.">
   <section class="lead wrap">
     <div class="lead-main">
-      <a class="lead-image" href={`/article/${featured.slug}/`}><img src={featured.image} alt="" /></a>
+      <a class="lead-image" href={`/article/${featured.slug}/`}><img src={getArticleImage(featured)} alt="" onerror={`this.onerror=null;this.src='${getFallbackImage(featured.category)}'`} /></a>
       <div class="lead-copy"><p class="eyebrow">Top story · {featured.category}</p><h1><a href={`/article/${featured.slug}/`}>{featured.title}</a></h1><p>{featured.excerpt}</p><a class="read-more" href={`/article/${featured.slug}/`}>Read full story <span>→</span></a></div>
     </div>
-    <aside class="lead-side"><div class="side-title"><span>Latest</span><span class="live-dot"></span></div>{side.map((article,i)=><article class="side-story"><span class="story-number">0{i+1}</span><div><p class="eyebrow">{article.category}</p><h2><a href={`/article/${article.slug}/`}>{article.title}</a></h2><time>{new Date(article.publishedAt).toLocaleDateString('en-CA',{month:'short',day:'numeric'})}</time></div></article>)}</aside>
+    <aside class="lead-side"><div class="side-title"><span>Latest</span><span class="live-dot"></span></div>{side.map((article,i)=><article class="side-story"><span class="story-number">0{i+1}</span><div><p class="eyebrow">{article.category}</p><h2><a href={`/article/${article.slug}/`}>{article.title}</a></h2><time>{formatPublicationDate(article.publishedAt,{month:'short',day:'numeric'})}</time></div></article>)}</aside>
   </section>
 
   <section class="score-strip"><div class="wrap score-strip__inner"><span class="score-label">COMING NEXT</span><strong>Live scores, fixtures & standings</strong><span>We’ll connect match data after the news experience is ready.</span></div></section>
@@ -27,8 +27,8 @@ const volleyball=sorted.filter(a=>a.category==='Volleyball').slice(0,3);
   <section class="dark-section"><div class="wrap section"><div class="section-heading section-heading--dark"><div><p class="eyebrow">The beautiful game</p><h2>Football</h2></div><a href="/football/">All football →</a></div><div class="news-grid">{football.map(article=><NewsCard article={article} />)}</div></div></section>
 
   <section class="wrap split-sections">
-    <div class="mini-section"><div class="section-heading"><div><p class="eyebrow">At the crease</p><h2>Cricket</h2></div><a href="/cricket/">View all →</a></div>{cricket.map(article=><article class="row-story"><img src={article.image} alt=""/><div><h3><a href={`/article/${article.slug}/`}>{article.title}</a></h3><p>{article.excerpt}</p></div></article>)}</div>
-    <div class="mini-section"><div class="section-heading"><div><p class="eyebrow">On the court</p><h2>Volleyball</h2></div><a href="/volleyball/">View all →</a></div>{volleyball.map(article=><article class="row-story"><img src={article.image} alt=""/><div><h3><a href={`/article/${article.slug}/`}>{article.title}</a></h3><p>{article.excerpt}</p></div></article>)}</div>
+    <div class="mini-section"><div class="section-heading"><div><p class="eyebrow">At the crease</p><h2>Cricket</h2></div><a href="/cricket/">View all →</a></div>{cricket.map(article=><article class="row-story"><img src={getArticleImage(article)} alt="" onerror={`this.onerror=null;this.src='${getFallbackImage(article.category)}'`}/><div><h3><a href={`/article/${article.slug}/`}>{article.title}</a></h3><p>{article.excerpt}</p></div></article>)}</div>
+    <div class="mini-section"><div class="section-heading"><div><p class="eyebrow">On the court</p><h2>Volleyball</h2></div><a href="/volleyball/">View all →</a></div>{volleyball.map(article=><article class="row-story"><img src={getArticleImage(article)} alt="" onerror={`this.onerror=null;this.src='${getFallbackImage(article.category)}'`}/><div><h3><a href={`/article/${article.slug}/`}>{article.title}</a></h3><p>{article.excerpt}</p></div></article>)}</div>
   </section>
 
   <section class="wrap manifesto"><p class="eyebrow">This is KhelMaidan</p><h2>The game. The people.<br/><span>The stories that matter.</span></h2><p>Built as an independent sports destination with a football-first identity and room for every game that belongs on the maidan.</p></section>

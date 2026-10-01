@@ -1,21 +1,26 @@
 ---
-import SiteLayout from "../../layouts/SiteLayout.astro";
-import { articles } from "../../data/articles.js";
-export function getStaticPaths() {
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { getArticles, formatPublicationDate, getArticleImage, getFallbackImage } from '../../lib/articles.js';
+import { render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const articles = await getArticles();
   return articles.map((article) => ({ params: { slug: article.slug }, props: { article } }));
 }
+
 const { article } = Astro.props;
+const { Content } = await render(article.entry);
+const articleImage = getArticleImage(article);
+const fallbackImage = getFallbackImage(article.category);
 ---
 <SiteLayout title={`${article.title} | KhelMaidan`} description={article.excerpt}>
   <article class="article wrap">
     <a class="back-link" href={`/${article.category.toLowerCase()}/`}>← Back to {article.category}</a>
-    <p class="eyebrow">{article.category} · {new Date(article.publishedAt).toLocaleDateString("en-CA", { year: "numeric", month: "long", day: "numeric" })}</p>
+    <p class="eyebrow">{article.category} · {formatPublicationDate(article.publishedAt, { year: 'numeric', month: 'long', day: 'numeric' })}</p>
     <h1>{article.title}</h1>
     <p class="article-deck">{article.excerpt}</p>
-    <img class="article-image" src={article.image} alt="" />
-    <div class="article-body">
-      {article.body.map((paragraph) => <p>{paragraph}</p>)}
-    </div>
-    <p class="placeholder-note">Development sample — replace this placeholder with original reporting before launch.</p>
+    <p class="muted">By {article.author}</p>
+    <img class="article-image" src={articleImage} alt="" onerror={`this.onerror=null;this.src='${fallbackImage}'`} />
+    <div class="article-body"><Content /></div>
   </article>
 </SiteLayout>
