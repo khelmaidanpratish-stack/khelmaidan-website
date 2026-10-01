@@ -8,7 +8,7 @@ public_folder: /uploads
 
 site_url: https://khelmaidan-website.khel-maidan-pratish.workers.dev
 display_url: https://khelmaidan-website.khel-maidan-pratish.workers.dev
-logo_url: /images/football-placeholder.svg
+logo_url: /images/khelmaidan-mark.svg
 
 collections:
   - name: articles
