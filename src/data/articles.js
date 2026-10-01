@@ -1,40 +1,13 @@
-// Temporary sample stories to demonstrate the layout.
-// Replace these with your own reporting before publishing the site.
+// Development stories used to demonstrate the editorial layout.
+// Replace these with original KhelMaidan reporting before launch.
 export const articles = [
-  {
-    slug: "football-season-preview",
-    title: "A new football season brings fresh storylines",
-    category: "Football",
-    publishedAt: "2026-09-30T12:00:00-04:00",
-    excerpt: "A sample introduction showing how KhelMaidan articles will appear.",
-    image: "/images/football-placeholder.svg",
-    body: [
-      "This is placeholder article copy for development only. Replace it with your own original reporting.",
-      "Later, we will connect an editorial CMS so you can publish articles without editing code."
-    ]
-  },
-  {
-    slug: "cricket-weekly-roundup",
-    title: "The cricket week ahead: fixtures to follow",
-    category: "Cricket",
-    publishedAt: "2026-09-29T16:00:00-04:00",
-    excerpt: "A sample cricket story for testing category pages and article layouts.",
-    image: "/images/cricket-placeholder.svg",
-    body: [
-      "This is placeholder article copy for development only. Replace it with your own original reporting."
-    ]
-  },
-  {
-    slug: "volleyball-community",
-    title: "Community volleyball continues to grow",
-    category: "Volleyball",
-    publishedAt: "2026-09-28T10:00:00-04:00",
-    excerpt: "A sample story to demonstrate the Volleyball section.",
-    image: "/images/volleyball-placeholder.svg",
-    body: [
-      "This is placeholder article copy for development only. Replace it with your own original reporting."
-    ]
-  }
+  { slug:'football-season-preview', title:'A new football season brings fresh storylines', category:'Football', publishedAt:'2026-09-30T20:00:00-04:00', excerpt:'The new campaign is here, with fresh faces, renewed rivalries and plenty to follow.', image:'/images/football-placeholder.svg', featured:true, body:['This is placeholder article copy for development only. Replace it with your own original reporting.','KhelMaidan is being built as a clean, fast home for football and wider sports coverage.'] },
+  { slug:'matchday-talking-points', title:'Five matchday talking points worth watching this week', category:'Football', publishedAt:'2026-09-30T17:30:00-04:00', excerpt:'Form, tactics and players under the spotlight as another week of football begins.', image:'/images/football-placeholder.svg', body:['This is development copy showing how a KhelMaidan football story will look.'] },
+  { slug:'cricket-weekly-roundup', title:'The cricket week ahead: fixtures to follow', category:'Cricket', publishedAt:'2026-09-29T16:00:00-04:00', excerpt:'A quick guide to the games and storylines on the cricket calendar.', image:'/images/cricket-placeholder.svg', body:['This is placeholder article copy for development only. Replace it with your own original reporting.'] },
+  { slug:'football-young-players', title:'Young players ready to make their mark', category:'Football', publishedAt:'2026-09-29T11:00:00-04:00', excerpt:'A new generation is pushing for bigger roles and bigger moments.', image:'/images/football-placeholder.svg', body:['This is development copy for the KhelMaidan article template.'] },
+  { slug:'volleyball-community', title:'Community volleyball continues to grow', category:'Volleyball', publishedAt:'2026-09-28T10:00:00-04:00', excerpt:'Local courts are getting busier as more players discover the game.', image:'/images/volleyball-placeholder.svg', body:['This is placeholder article copy for development only. Replace it with your own original reporting.'] },
+  { slug:'cricket-form-guide', title:'Form guide: the names making an early impact', category:'Cricket', publishedAt:'2026-09-27T18:00:00-04:00', excerpt:'A look at the performances creating conversation around the game.', image:'/images/cricket-placeholder.svg', body:['This is development copy for the KhelMaidan article template.'] },
+  { slug:'football-weekend-guide', title:'Your weekend football guide in one place', category:'Football', publishedAt:'2026-09-27T12:00:00-04:00', excerpt:'What to follow, where the key battles are and the stories behind the fixtures.', image:'/images/football-placeholder.svg', body:['This is development copy for the KhelMaidan article template.'] },
+  { slug:'beyond-the-score', title:'Beyond the score: why the stories around sport matter', category:'Extras', publishedAt:'2026-09-26T09:00:00-04:00', excerpt:'Sport is more than a final score. KhelMaidan will follow the people and culture around it.', image:'/images/football-placeholder.svg', body:['This is development copy for the KhelMaidan Extras section.'] }
 ];
-
-export const categories = ["Football", "Cricket", "Volleyball", "Extras"];
+export const categories = ['Football','Cricket','Volleyball','Extras'];
